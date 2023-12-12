@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MvcProject.Models.Contato>
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>@ViewData["Title"] - Sua Aplicação</title>
+
+    <!-- Adicione os links do Bootstrap no cabeçalho do seu arquivo _Layout.cshtml -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: #121212; /* Cor de fundo preto */
+            color: #ffffff; /* Cor do texto branco para contraste */
+        }
+
+        .table {
+            color: #ffffff; /* Cor do texto branco para contraste nas tabelas */
+        }
+    </style>
+</head>
+
+    <div class="container">
+        <h2>Contatos</h2>
+        <p><a asp-action="Criar">Novo Contato</a></p>
+
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Id)</th>
+                    <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                    <th>@Html.DisplayNameFor(model => model.Telefone)</th>
+                    <th>@Html.DisplayNameFor(model => model.Ativo)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.Id)</td>
+                        <td>@Html.DisplayFor(model => item.Nome)</td>
+                        <td>@Html.DisplayFor(model => item.Telefone)</td>
+                        <td>@Html.DisplayFor(model => item.Ativo)</td>
+                        <td>
+                            <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
+                            <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
+                            <a asp-action="Deletar" asp-route-id="@item.Id">Deletar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
